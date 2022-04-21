@@ -1,0 +1,170 @@
+/*
+-How to use Custom CSS for the Gamepad Viewer-
+http://mrmcpowned.com/gamepad
+
+Enabling a custom CSS is as easy as adding &css=[url to css file]
+to the end of the url like so:
+http://mrmcpowned.com/gamepad?p=1&css=https://gist.github.com/anonymous/526491dc02014099cd14/raw/d7bb0477ba984f794497f3f0f82cb33484dc7889/ps3.css
+
+PS3 controller's skin can be found at http://mrmcpowned.com/gamepad/ps3-assets/base.png
+*/
+body{
+  background-color: #333;
+}
+
+/*BEGIN PS3 Controller Styling*/
+/*This class defines the base attributes of the skin*/
+.controller.custom{
+    background: url(img/pad.png) no-repeat;
+    height: 200px;
+    width: 200px;
+}
+.custom.disconnected { /* This class shows an image when the controller is disconnected */
+    background: url(img/base-disconnect.png);
+}
+/* This hides the controller's button when disconnected so only the background image remains */
+.custom.disconnected div {
+    display: none;
+}
+.custom .triggers{ /* The triggers are housed inside a div, so this sizes the div properly and positions it */
+    width: 586px;
+    height: 65px;
+    position: absolute;
+    left: 99px;
+}
+.custom .trigger{/* These are the actual triggers themselves */
+    width:62px;
+    height:62px;
+    background: url(img/boot.png);
+    opacity: 0;
+    transform:scale(0.73);
+    background-position-y:62px;
+}
+/* The left and right classes below are used to position the triggers
+within the div they're contained in. Since their positions is realtive
+to the size of the parent element, we simply resize the parent element
+above to achieve the desired position. */
+.custom .trigger.left{
+    position:absolute;
+    left:-46.5px;
+    top:28px;
+    z-index:4;
+}
+.custom .trigger.right{
+    position: absolute;
+    left: -75px;
+    top: 23px;
+    width: 120px;
+    height: 120px;
+    background: url(img/fatal-strike.png) no-repeat;
+}
+
+/* === RB, Artes Sphere === */
+.custom .bumper{
+    width: 149px;
+    height: 184px;
+    background: url(img/artes-sphere.png) no-repeat;
+    opacity: 0;
+}
+.custom .bumpers{
+    position: absolute;
+    z-index: 3;
+}
+.custom .bumper.pressed{
+    opacity: 1;
+}
+.custom .bumper.left{
+  position: absolute;
+  transform: scale(0.715);
+  top: 38.3px;
+  left: 68.5px;
+}
+
+/* === FACE BUTTONS === */
+.custom .abxy{
+    position: absolute;
+    width: 204px;
+    height: 205px;
+    top: 0px;
+    left: 0px;
+    transform:scale(0.7);
+    z-index: 2;
+}
+.custom .button{
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    background: url(img/face-buttons.png);
+}
+.custom .button.pressed{
+    background-position-y: -62px;
+    /* margin-top: 5px; */
+}
+.custom .a{
+    background-position: 62px 0;
+    top: 81px;
+    left: 45px;
+}
+.custom .b{
+    background-position: 125px 0;
+    top: 45px;
+    right: 61px;
+}
+.custom .x{
+    background-position: 0 0;
+    top: 45px;
+    left: 9px;
+}
+.custom .y{
+    background-position: -63px 0;
+    left: 45px;
+    top: 9px;
+}
+.custom .y.pressed{
+    background-position-y: 0px;
+    /* doesn't trigger when pressing "item menu" */
+}
+
+/* === STICKS === */
+/*
+Analog sticks follow the same principles as the triggers in terms of positioning
+Note that the rotation of the sticks in hard coded with javascript, so it applies
+the CSS inline. */
+.custom .sticks{
+    position: absolute;
+    width: 364px;
+    height: 105px;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+}
+.custom .stick{
+    position: absolute;
+    background: url(img/stick.png);
+    height:37px;
+    width: 37px;
+}
+.custom .stick.pressed.left{
+    /* background-position-x: -106px; */
+}
+.custom .stick.pressed.right{
+    /* background-position-x: -211px; */
+}
+.custom .stick.left{
+    top: 8px;
+    left: 8px;
+}
+.custom .stick.right{
+    top: 123px; /* calc(100% - 105px) */
+    left: 124px;
+}
+
+/* === UNLOAD STUFF === */
+.custom .p0,.custom .p1,.custom .p2,.custom .p3,
+.custom .arrows,
+.custom .back, .custom .start,.custom .back.pressed, .custom .start.pressed,
+.fstick,
+.custom .quadrant,
+.custom .bumper.right{
+    display:none;
+}
